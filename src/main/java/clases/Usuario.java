@@ -4,12 +4,16 @@ package clases;
       private String nombre;
       private String correoElectronico;
 
-      // Constructor;
+      // Constructores;
+
+      public Usuario(){
+          this.nombre = "";
+          this.correoElectronico = "";
+      }
       public Usuario(String nombre, String correoElectronico)
       {
           this.nombre = nombre;
           this.correoElectronico = correoElectronico;
-          
           
       }
       

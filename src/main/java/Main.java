@@ -5,6 +5,7 @@ public class Main {
 
     String ingresado;
     int opcion;
+    int opcionMenu;
 
     BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
 
@@ -22,6 +23,11 @@ public class Main {
       switch(opcion){
         case 1:
           //mostrarEventosDisponible();
+          System.out.println("Ingrese el evento que desea saber mas informacion.");
+          ingresado = lector.readLine();
+          opcionMenu = Integer.parseInt(ingresado);
+          //mostrarInfoEvento(opcionMenu);
+          
           break;
         case 2:
           //buscarEventoPorID(Id);

@@ -7,17 +7,19 @@ public class Evento {
     private String ubicacion;
     private int capacidadTotal;
     private int entradasDisponibles;
+    private int topico;
 
     
     // Constructor;
     
-    public Evento(String nombre, LocalDateTime fechaHora, String ubicacion, int capacidadTotal, int entradasDisponibles)
+    public Evento(String nombre, LocalDateTime fechaHora, String ubicacion, int capacidadTotal, int entradasDisponibles, int topico)
     {
         this.nombre = nombre;
         this.fechaHora = fechaHora;
         this.ubicacion = ubicacion;
         this.capacidadTotal = capacidadTotal;
         this.entradasDisponibles = entradasDisponibles;
+        this.topico = topico;
     }
     // Getters y Setters;
   
