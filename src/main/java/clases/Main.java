@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Main {
 
-  //Creacion de Hashmap 
+  //Creacion de Hashmap;
   private static HashMap<Integer, Evento> eventos = new HashMap<Integer, Evento>();
   //private static HashMap<Integer, List<Compra>> ventas = new HashMap<Integer, List<Compra>>();
   
@@ -16,7 +16,7 @@ public class Main {
     int opcion;
     int opcionMenu;
 
-    //Creacion de eventos
+    //Creacion de eventos;
 
     inicializarEventos();
 
@@ -32,7 +32,7 @@ public class Main {
           System.out.println("Ingrese el evento que desea saber mas informacion.");
           ingresado = lector.readLine();
           opcionMenu = Integer.parseInt(ingresado);
-          //Obtener y mostrar evento
+          //Obtener y mostrar evento;
           Evento eventoBuscado = eventos.get(opcionMenu);
           eventoBuscado.mostrarInfoEvento();
           break;

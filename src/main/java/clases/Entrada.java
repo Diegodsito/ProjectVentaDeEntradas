@@ -7,14 +7,14 @@ public class Entrada {
     private String estado;
 
     
-    // Constructor
+    // Constructor;
     public Entrada(String idEntrada, String tipo, double precio, String estado) {
         this.idEntrada = idEntrada;
         this.tipo = tipo;
         this.precio = precio;
         this.estado = estado;
     }
-    // Getters y Setters
+    // Getters y Setters;
 
     public String getIdEntrada() {
         return idEntrada;
