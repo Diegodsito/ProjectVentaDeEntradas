@@ -1,21 +1,15 @@
 package clases;
 
-import java.time.LocalDate;
-
-
 
 public class Compra {
     private String idCompra;
     private Usuario usuario;
-    private LocalDate fechaCompra;
     private double montoTotal;
 
     // constructor;
-
-    public Compra(String idCompra, Usuario usuario, LocalDate fechaCompra, double montoTotal) {
+    public Compra(String idCompra, Usuario usuario, double montoTotal) {
         this.idCompra = idCompra;
         this.usuario = usuario;
-        this.fechaCompra = fechaCompra;
         this.montoTotal = montoTotal;
         
     }
@@ -36,14 +30,6 @@ public class Compra {
         this.usuario = usuario;
     }
 
-    public LocalDate getFechaCompra() {
-        return fechaCompra;
-    }
-
-    public void setFechaCompra(LocalDate fechaCompra) {
-        this.fechaCompra = fechaCompra;
-    }
-
     public double getMontoTotal() {
         return montoTotal;
     }
@@ -51,7 +37,4 @@ public class Compra {
     public void setMontoTotal(double montoTotal) {
         this.montoTotal = montoTotal;
     }
-
-
-
 }
