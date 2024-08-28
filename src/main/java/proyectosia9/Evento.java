@@ -79,7 +79,7 @@ public class Evento {
     //Metodos
 
     public void mostrarInfoEvento(){
-
+        System.out.println("");
         System.out.println("Evento : " + nombre);
         System.out.println("Ubicacion : " + ubicacion);
         System.out.println("Fecha : " + fecha);

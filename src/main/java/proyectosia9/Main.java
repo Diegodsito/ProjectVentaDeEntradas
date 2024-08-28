@@ -16,22 +16,12 @@ public class Main {
     int opcionMenu;
 
     Map<Integer,Evento> eventos = new HashMap<Integer,Evento>();
+    Usuario usuarioIngresado = new Usuario();
     
-    Evento evento1 = new Evento("Charla Java", "Av. Calle 1","20/11/1004", 100, 50, 1);
-    Evento evento2 = new Evento("Seminarios Programacion" , "Av. Calle 2", "20/11/2024", 100, 50, 2);
-
-    eventos.put(1, evento1);
-    eventos.put(2, evento2);
-
-    
-
+    inicializarEventos(eventos);
 
     do{
-      int sizeEventos = eventos.size();
-      System.out.println("Tamano eventos" + sizeEventos);
-      System.out.flush();  // Forzar la impresión inmediata en la consola
-      System.out.println();
-      
+  
       mostrarMenu();
       
       ingresado = lector.readLine();
@@ -39,13 +29,40 @@ public class Main {
 
       switch(opcion){
         case 1:
-          //mostrarEventosDisponible();
+          mostrarEventosDisponibles(eventos);
           System.out.println("Ingrese el evento que desea saber mas informacion.");
           ingresado = lector.readLine();
           opcionMenu = Integer.parseInt(ingresado);
+          
           //Obtener y mostrar evento;
           Evento eventoBuscado = eventos.get(opcionMenu);
           eventoBuscado.mostrarInfoEvento();
+
+          
+          System.out.println("");
+          System.out.println("Desea comprar entradas?");
+          System.out.println("1. Si");
+          System.out.println("2. No");
+
+          ingresado = lector.readLine();
+          opcionMenu = Integer.parseInt(ingresado);
+          if(opcionMenu == 1){
+            
+            System.out.println("Entradas disponibles: " + eventoBuscado.getEntradasDisponibles());
+            System.out.println("Ingrese su nombre y correo para continuar");
+            
+            System.out.println("Nombre: ");
+            ingresado = lector.readLine();
+            usuarioIngresado.setNombre(ingresado);
+            
+            System.out.println("Correo electronico: ");
+            ingresado = lector.readLine();
+            usuarioIngresado.setCorreoElectronico(ingresado);
+          }
+          else if(opcionMenu == 2){
+            System.out.println("Volviendo al menu principal");
+            break;
+          }
           break;
         case 2:
           System.out.println("Ingrese el ID del evento que desea buscar.");
@@ -72,6 +89,17 @@ public class Main {
     
   }
 
+  public static void mostrarEventosDisponibles(Map<Integer, Evento> eventos) {
+
+    int cont = 1;
+    System.out.println("");
+    System.out.println("Eventos disponibles:");
+    for (Evento evento : eventos.values()) {
+      System.out.println(cont + ") " + evento.getNombre());
+      cont++;
+    }
+  }
+  
   private static void mostrarMenu() {
     System.out.println("===============================================");
     System.out.println("   Bienvenido al sistema de venta de entradas ");
@@ -83,4 +111,13 @@ public class Main {
     System.out.print("Ingrese una opción: ");
 
   }
+
+  private static void inicializarEventos(Map<Integer, Evento> eventos){
+    Evento evento1 = new Evento("Charla Java", "Av. Calle 1","20/11/1004", 100, 50, 1);
+    Evento evento2 = new Evento("Seminarios Programacion" , "Av. Calle 2", "20/11/2024", 100, 50, 2);
+
+    eventos.put(1, evento1);
+    eventos.put(2, evento2);
+  }
+
 }
