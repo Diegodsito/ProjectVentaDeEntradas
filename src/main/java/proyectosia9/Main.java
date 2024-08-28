@@ -4,31 +4,42 @@ import java.util.*;
 
 public class Main {
 
-  //Creacion de Hashmap;
-  private static HashMap<Integer, Evento> eventos = new HashMap<Integer, Evento>();
-  //private static HashMap<Integer, List<Compra>> ventas = new HashMap<Integer, List<Compra>>();
+  //Creacion de mostrarMenueption
+  //private static HashMap<Integer, List<Compra>> ventas = new HashMap<HashMapra>>();
   
   public static void main(String[] args)throws IOException {
 
     BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-
+    
     String ingresado;
     int opcion;
     int opcionMenu;
 
-    //Creacion de eventos;
+    Map<Integer,Evento> eventos = new HashMap<Integer,Evento>();
+    
+    Evento evento1 = new Evento("Charla Java", "Av. Calle 1","20/11/1004", 100, 50, 1);
+    Evento evento2 = new Evento("Seminarios Programacion" , "Av. Calle 2", "20/11/2024", 100, 50, 2);
 
-    inicializarEventos();
+    eventos.put(1, evento1);
+    eventos.put(2, evento2);
+
+    
+
 
     do{
+      int sizeEventos = eventos.size();
+      System.out.println("Tamano eventos" + sizeEventos);
+      System.out.flush();  // Forzar la impresión inmediata en la consola
+      System.out.println();
+      
       mostrarMenu();
-
+      
       ingresado = lector.readLine();
       opcion = Integer.parseInt(ingresado);
 
       switch(opcion){
         case 1:
-          mostrarEventosDisponible();
+          //mostrarEventosDisponible();
           System.out.println("Ingrese el evento que desea saber mas informacion.");
           ingresado = lector.readLine();
           opcionMenu = Integer.parseInt(ingresado);
@@ -70,24 +81,6 @@ public class Main {
     System.out.println("3. Cancelar compra");
     System.out.println("4. Salir");
     System.out.print("Ingrese una opción: ");
-  }
 
-  public static void mostrarEventosDisponible(){
-    int i;
-    Evento eventoActual;
-    
-    for (i = 1; i <= eventos.size(); i++){
-      eventoActual = eventos.get(i);
-      System.out.println("Evento " + i + ") " + eventoActual.getNombre());
-    }
-  }
-
-  public static void inicializarEventos(){
-
-    Evento evento1 = new Evento("Charla Java", "Av. Calle 1","20/11/2024", 100, 50, 1);
-    Evento evento2 = new Evento("Seminarios Programacion" , "Av. Calle 2", "20/11/2024", 100, 50, 2);
-    
-    eventos.put(1, evento1);
-    eventos.put(2, evento2);
   }
 }
