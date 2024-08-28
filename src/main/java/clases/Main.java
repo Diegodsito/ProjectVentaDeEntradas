@@ -1,13 +1,12 @@
 package clases;
-
 import java.io.*;
 import java.util.*;
 
 public class Main {
 
   //Creacion de Hashmap 
-  private static HashMap<Integer, Evento> eventos = new HashMap<>();
-  private static HashMap<Integer, List<Compra>> ventas = new HashMap<>();
+  private static HashMap<Integer, Evento> eventos = new HashMap<Integer, Evento>();
+  //private static HashMap<Integer, List<Compra>> ventas = new HashMap<Integer, List<Compra>>();
   
   public static void main(String[] args)throws IOException {
 
@@ -33,8 +32,10 @@ public class Main {
           System.out.println("Ingrese el evento que desea saber mas informacion.");
           ingresado = lector.readLine();
           opcionMenu = Integer.parseInt(ingresado);
+          //Obtener y mostrar evento
           Evento eventoBuscado = eventos.get(opcionMenu);
-          
+          eventoBuscado.mostrarInfoEvento();
+          break;
         case 2:
           System.out.println("Ingrese el ID del evento que desea buscar.");
           ingresado = lector.readLine();
@@ -73,17 +74,20 @@ public class Main {
 
   public static void mostrarEventosDisponible(){
     int i;
-    int tamanoEventos = eventos.size();
     Evento eventoActual;
     
-    for (i = 0; i < tamanoEventos; i++){
+    for (i = 1; i <= eventos.size(); i++){
       eventoActual = eventos.get(i);
-      eventoActual.mostrarInfoEvento();
+      System.out.println("Evento " + i + ") " + eventoActual.getNombre());
     }
   }
 
   public static void inicializarEventos(){
-    eventos.put(1, new Evento("Charla Java", "Av. Calle 1","20/11/2024", 100, 50, 1));
-    eventos.put(2, new Evento("Seminarios Programacion", "Av. Calle 2", "20/11/2025",50, 25, 2));
+
+    Evento evento1 = new Evento("Charla Java", "Av. Calle 1","20/11/2024", 100, 50, 1);
+    Evento evento2 = new Evento("Seminarios Programacion" , "Av. Calle 2", "20/11/2024", 100, 50, 2);
+    
+    eventos.put(1, evento1);
+    eventos.put(2, evento2);
   }
 }
