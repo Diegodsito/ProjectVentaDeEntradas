@@ -1,4 +1,4 @@
-package clases;
+package proyectosia9;
 
 public class Entrada {
     private String idEntrada;
