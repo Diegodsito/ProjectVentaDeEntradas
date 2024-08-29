@@ -39,29 +39,42 @@ public class Main {
           eventoBuscado.mostrarInfoEvento();
 
           
-          System.out.println("");
-          System.out.println("Desea comprar entradas?");
-          System.out.println("1. Si");
-          System.out.println("2. No");
+          if (eventoBuscado.getEntradasDisponibles() > 0) {
+            System.out.println("");
+            System.out.println("Desea comprar entradas?");
+            System.out.println("1. Sí");
+            System.out.println("2. No");
 
-          ingresado = lector.readLine();
-          opcionMenu = Integer.parseInt(ingresado);
-          if(opcionMenu == 1){
-            
-            System.out.println("Entradas disponibles: " + eventoBuscado.getEntradasDisponibles());
-            System.out.println("Ingrese su nombre y correo para continuar");
-            
-            System.out.println("Nombre: ");
             ingresado = lector.readLine();
-            usuarioIngresado.setNombre(ingresado);
-            
-            System.out.println("Correo electronico: ");
-            ingresado = lector.readLine();
-            usuarioIngresado.setCorreoElectronico(ingresado);
-          }
-          else if(opcionMenu == 2){
-            System.out.println("Volviendo al menu principal");
-            break;
+            opcionMenu = Integer.parseInt(ingresado);
+            if (opcionMenu == 1) {
+                System.out.println("Entradas disponibles: " + eventoBuscado.getEntradasDisponibles());
+                System.out.println("Ingrese su nombre y correo para continuar");
+
+                System.out.println("Nombre: ");
+                ingresado = lector.readLine();
+                usuarioIngresado.setNombre(ingresado);
+
+                System.out.println("Correo electrónico: ");
+                ingresado = lector.readLine();
+                usuarioIngresado.setCorreoElectronico(ingresado);
+
+                // Crear una compra y agregarla al evento
+                String idCompra = "ID_" + new Random().nextInt(1000);  //  Es una id random para cada quien que compra
+                Compra compra = new Compra(idCompra, usuarioIngresado, 0);  // Cuando queramos ponerle valor hay que modificar esto
+                eventoBuscado.agregarCompra(compra);
+
+                // Actualizar entradas disponibles
+                int entradasRestantes = eventoBuscado.getEntradasDisponibles() - 1;  
+                eventoBuscado.setEntradasDisponibles(entradasRestantes);
+
+                System.out.println("Compra realizada con éxito.");
+            } else if (opcionMenu == 2) {
+                System.out.println("Volviendo al menú principal");
+            }
+          } else {
+            // Si no hay entradas disponibles
+            System.out.println("Lo sentimos, no hay más entradas disponibles para este evento.");
           }
           break;
         case 2:
@@ -113,7 +126,7 @@ public class Main {
   }
 
   private static void inicializarEventos(Map<Integer, Evento> eventos){
-    Evento evento1 = new Evento("Charla Java", "Av. Calle 1","20/11/1004", 100, 50, 1);
+    Evento evento1 = new Evento("Charla Java", "Av. Calle 1","20/11/1004", 100, 2, 1);
     Evento evento2 = new Evento("Seminarios Programacion" , "Av. Calle 2", "20/11/2024", 100, 50, 2);
 
     eventos.put(1, evento1);

@@ -1,5 +1,5 @@
 package proyectosia9;
-
+import java.util.*;
 
 public class Evento {
     private String nombre;
@@ -8,6 +8,7 @@ public class Evento {
     private int capacidadTotal;
     private int entradasDisponibles;
     private int topico;
+    private List<Compra> compras;  // Nueva lista para las compras
 
     
     // Constructor;
@@ -29,6 +30,7 @@ public class Evento {
         this.capacidadTotal = capacidadTotal;
         this.entradasDisponibles = entradasDisponibles;
         this.topico = topico;
+        this.compras = new ArrayList<Compra>();
     }
     // Getters y Setters;
   
@@ -76,6 +78,13 @@ public class Evento {
     public void setTopico(int topico) {
         this.topico = topico;
     }
+    public void agregarCompra(Compra compra) {
+        compras.add(compra);
+    }
+
+    public List<Compra> getCompras() {
+        return compras;
+    }
     //Metodos
 
     public void mostrarInfoEvento(){
@@ -87,6 +96,14 @@ public class Evento {
         System.out.println("Entradas Disponibles : " + entradasDisponibles);
         System.out.println("Topico : " + topico);
          
+    }
+    
+    public List<Usuario> getUsuariosQueCompraron() {
+        List<Usuario> usuarios = new ArrayList<Usuario>();
+        for (Compra compra : compras) {
+            usuarios.add(compra.getUsuario());
+        }
+        return usuarios;
     }
 
 
