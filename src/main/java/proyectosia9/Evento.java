@@ -2,12 +2,16 @@ package proyectosia9;
 import java.util.*;
 
 public class Evento {
+    private int id;
+    private String tipo; // Charlas o Seminarios
     private String nombre;
+    private String topico;
+
+
     private String ubicacion;
     private String fecha;
     private int capacidadTotal;
     private int entradasDisponibles;
-    private int topico;
     private List<Compra> compras;  // Nueva lista para las compras
 
     
@@ -15,16 +19,20 @@ public class Evento {
 
     public Evento(){
         this.nombre = "";
+        this.id = 0;
+        this.tipo = "";
         this.ubicacion = "";
         this.fecha = "";
         this.capacidadTotal = 0;
         this.entradasDisponibles = 0;
-        this.topico = 0;
+        this.topico = "";
     }
     
-    public Evento(String nombre, String ubicacion, String fecha, int capacidadTotal, int entradasDisponibles, int topico)
+    public Evento(String nombre,String tipo, String ubicacion, String fecha, int capacidadTotal, int entradasDisponibles, String topico, int id)
     {
         this.nombre = nombre;
+        this.id = id;
+        this.tipo = tipo;
         this.ubicacion = ubicacion;
         this.fecha = fecha;
         this.capacidadTotal = capacidadTotal;
@@ -40,6 +48,22 @@ public class Evento {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo){
+        this.tipo = tipo;
     }
 
     public String getUbicacion() {
@@ -72,10 +96,10 @@ public class Evento {
     public void setEntradasDisponibles(int entradasDisponibles) {
         this.entradasDisponibles = entradasDisponibles;
     }
-    public int getTopico() {
+    public String getTopico() {
         return topico;
     }
-    public void setTopico(int topico) {
+    public void setTopico(String topico) {
         this.topico = topico;
     }
     public void agregarCompra(Compra compra) {
@@ -97,7 +121,30 @@ public class Evento {
         System.out.println("Topico : " + topico);
          
     }
-    
+
+    public void mostrarInfoEvento(int idEvento){
+        if (id == idEvento){
+            System.out.println("");
+            System.out.println("Evento : " + nombre);
+            System.out.println("Ubicacion : " + ubicacion);
+            System.out.println("Fecha : " + fecha);
+            System.out.println("Capacidad Total : " + capacidadTotal);
+            System.out.println("Entradas Disponibles : " + entradasDisponibles);
+            System.out.println("Topico : " + topico);
+        }
+    }
+
+    public void mostrarInfoEvento(String topico){
+        if (this.topico == topico){
+            System.out.println("");
+            System.out.println("Evento : " + nombre);
+            System.out.println("Ubicacion : " + ubicacion);
+            System.out.println("Fecha : " + fecha);
+            System.out.println("Capacidad Total : " + capacidadTotal);
+            System.out.println("Entradas Disponibles : " + entradasDisponibles);
+            System.out.println("Topico : " + topico);
+        }
+    }
 
 
 }
