@@ -98,13 +98,6 @@ public class Evento {
          
     }
     
-    public List<Usuario> getUsuariosQueCompraron() {
-        List<Usuario> usuarios = new ArrayList<Usuario>();
-        for (Compra compra : compras) {
-            usuarios.add(compra.getUsuario());
-        }
-        return usuarios;
-    }
 
 
 }

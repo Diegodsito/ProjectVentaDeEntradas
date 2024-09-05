@@ -12,8 +12,19 @@ public class Main {
     BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
     
     String ingresado;
+    String usuariosTXT = "ArchivosCSV/USUARIO.txt";
+    String eventosTXT = "ArchivosCSV/EVENTOS.txt";
     int opcion;
     int opcionMenu;
+
+    try(BufferedReader br = new BufferedReader(new FileReader(eventosTXT)){
+      String linea;
+      while((linea = br.readLine()) != null){
+        String[] valores = linea.split(";");
+        Evento evento = new Evento(valores[0], valores[1], valores[2], Integer.ParseInt(valores[3]), Integer.ParseInt(valores[4]), Integer.ParseInt(valores[5]));
+        eventos.put(id,evento);
+      }
+    }
 
     Map<Integer,Evento> eventos = new HashMap<Integer,Evento>();
     Usuario usuarioIngresado = new Usuario();
@@ -40,10 +51,8 @@ public class Main {
 
           
           if (eventoBuscado.getEntradasDisponibles() > 0) {
-            System.out.println("");
-            System.out.println("Desea comprar entradas?");
-            System.out.println("1. Sí");
-            System.out.println("2. No");
+            
+            mostrarMensajeCompra();
 
             ingresado = lector.readLine();
             opcionMenu = Integer.parseInt(ingresado);
@@ -125,12 +134,11 @@ public class Main {
 
   }
 
-  private static void inicializarEventos(Map<Integer, Evento> eventos){
-    Evento evento1 = new Evento("Charla Java", "Av. Calle 1","20/11/1004", 100, 2, 1);
-    Evento evento2 = new Evento("Seminarios Programacion" , "Av. Calle 2", "20/11/2024", 100, 50, 2);
-
-    eventos.put(1, evento1);
-    eventos.put(2, evento2);
+  private static void mostrarMensajeCompra(){
+    System.out.println("");
+    System.out.println("Desea comprar entradas?");
+    System.out.println("1. Sí");
+    System.out.println("2. No");
   }
 
 }
