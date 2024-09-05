@@ -12,23 +12,13 @@ public class Main {
     BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
     
     String ingresado;
-    String usuariosTXT = "ArchivosCSV/USUARIO.txt";
-    String eventosTXT = "ArchivosCSV/EVENTOS.txt";
+    //String usuariosTXT = "java/ArchivosCSV/USUARIO.txt";
     int opcion;
     int opcionMenu;
 
-    try(BufferedReader br = new BufferedReader(new FileReader(eventosTXT)){
-      String linea;
-      while((linea = br.readLine()) != null){
-        String[] valores = linea.split(";");
-        Evento evento = new Evento(valores[0], valores[1], valores[2], Integer.ParseInt(valores[3]), Integer.ParseInt(valores[4]), Integer.ParseInt(valores[5]));
-        eventos.put(id,evento);
-      }
-    }
-
     Map<Integer,Evento> eventos = new HashMap<Integer,Evento>();
     Usuario usuarioIngresado = new Usuario();
-    
+
     inicializarEventos(eventos);
 
     do{
@@ -139,6 +129,13 @@ public class Main {
     System.out.println("Desea comprar entradas?");
     System.out.println("1. Sí");
     System.out.println("2. No");
+  }
+
+  private static void inicializarEventos(Map<Integer, Evento> eventos){
+
+    eventos.put(1, new Evento("Concierto de Rock", "Av. Calle 1", "2023-06-01", 50, 50, 1));
+    eventos.put(2, new Evento("Festival de Música", "Av. Calle 2", "2023-06-02", 100, 100, 2));
+    
   }
 
 }
