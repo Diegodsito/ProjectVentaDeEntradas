@@ -18,11 +18,14 @@ public class Main {
     int opcionMenu;
 
     Map<Integer,Evento> eventos = new HashMap<Integer,Evento>();
-    Usuario usuarioIngresado = new Usuario();
 
-    List<Evento> eventazo = new ArrayList<>();
-
+   
+    Lectura.leer_archivo(eventos);
+    // Imprimir eventos desde el mapa para verificar que se han cargado correctamente
     
+    Usuario usuarioIngresado = new Usuario();
+/*
+    List<Evento> eventazo = new ArrayList<Evento>(); 
     Lectura.leer_archivo(eventazo);
     System.out.println("HOLa");
     for( int i = 0 ; i < eventazo.size(); i++)
@@ -36,10 +39,9 @@ public class Main {
         System.out.print(eventazo.get(i).getEntradasDisponibles() + "\n");
         System.out.print(eventazo.get(i).getTopico() + "\n");
         System.out.print(eventazo.get(i).getId() + "\n");
-        System.out.print("\n");
-        
         
       }
+    */
     //inicializarEventos(eventos);
 
     do{
