@@ -5,15 +5,13 @@ import java.util.*;
 
 public class Main {
 
-  //Creacion de mostrarMenueption
-  //private static HashMap<Integer, List<Compra>> ventas = new HashMap<HashMapra>>();
   
   public static void main(String[] args)throws IOException {
     
     BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
     
     String ingresado;
-    //String usuariosTXT = "java/ArchivosCSV/USUARIO.txt";
+   
     int opcion;
     int opcionMenu;
 
@@ -21,28 +19,8 @@ public class Main {
 
    
     Lectura.leer_archivo(eventos);
-    // Imprimir eventos desde el mapa para verificar que se han cargado correctamente
-    
+
     Usuario usuarioIngresado = new Usuario();
-/*
-    List<Evento> eventazo = new ArrayList<Evento>(); 
-    Lectura.leer_archivo(eventazo);
-    System.out.println("HOLa");
-    for( int i = 0 ; i < eventazo.size(); i++)
-      {
-        System.out.print(eventazo.get(i).getNombre() + "\n");
-        
-        System.out.print(eventazo.get(i).getTipo() + "\n");
-        System.out.print(eventazo.get(i).getUbicacion() + "\n");
-        System.out.print(eventazo.get(i).getFecha() + "\n");
-        System.out.print(eventazo.get(i).getCapacidadTotal() + "\n");
-        System.out.print(eventazo.get(i).getEntradasDisponibles() + "\n");
-        System.out.print(eventazo.get(i).getTopico() + "\n");
-        System.out.print(eventazo.get(i).getId() + "\n");
-        
-      }
-    */
-    //inicializarEventos(eventos);
 
     do{
   
@@ -60,17 +38,20 @@ public class Main {
           
           //Obtener y mostrar evento;
           Evento eventoBuscado = eventos.get(opcionMenu);
-          eventoBuscado.mostrarInfoEvento("goku");
-
           
+
+          eventoBuscado.mostrarInfoEvento();
           if (eventoBuscado.getEntradasDisponibles() > 0) {
             
             mostrarMensajeCompra();
 
             ingresado = lector.readLine();
             opcionMenu = Integer.parseInt(ingresado);
+            
             if (opcionMenu == 1) {
                 System.out.println("Entradas disponibles: " + eventoBuscado.getEntradasDisponibles());
+                //Ahora mostraremos la informacion del evento
+                
                 System.out.println("Ingrese su nombre y correo para continuar");
 
                 System.out.println("Nombre: ");
@@ -90,7 +71,10 @@ public class Main {
                 int entradasRestantes = eventoBuscado.getEntradasDisponibles() - 1;  
                 eventoBuscado.setEntradasDisponibles(entradasRestantes);
 
-                System.out.println("Compra realizada con éxito.");
+                mostrarTicketDeCompra(idCompra,usuarioIngresado,eventoBuscado);
+
+                System.out.println("Gracias por su compra!");
+                System.out.println("Volviendo al menu principal...");
             } else if (opcionMenu == 2) {
                 System.out.println("Volviendo al menú principal");
             }
@@ -100,14 +84,29 @@ public class Main {
           }
           break;
         case 2:
+          
           System.out.println("De que manera desea buscar su evento?.");
           System.out.println("1. Por topico");
           System.out.println("2. Por ID");
           System.out.println("3. Volver al menu principal");
           ingresado = lector.readLine();
           opcionMenu = Integer.parseInt(ingresado);
-          //buscarEvento(idEvento);
+         
+          if (opcionMenu == 1){
+            System.out.println("Ingrese el topico del evento que desea buscar");
+            
+            ingresado = lector.readLine();
+            String topico = ingresado;
+            //Implementar logica de mostrar varios eventos.
+          }
+          else if(opcionMenu == 2){  //Buscar por ID
+            System.out.println("Ingrese el ID del evento que desea buscar");
+            ingresado = lector.readLine();
+            int idEvento = Integer.parseInt(ingresado);
+            eventos.forEach((id, evento) -> evento.buscarEvento(idEvento));
+          }
           break;
+          
         case 3:
           System.out.println("Ingrese el ID del evento que desea cancelar.");
           ingresado = lector.readLine();
@@ -158,7 +157,17 @@ public class Main {
     System.out.println("2. No");
   }
 
-  private static void inicializarEventos(Map<Integer, Evento> eventos){
+  private static void mostrarTicketDeCompra(String idCompra, Usuario usuarioIngresado, Evento eventoBuscado){
+    System.out.println("=============================");
+    System.out.println("Ticket de Evento");
+    System.out.println("ID de Compra: " + idCompra);
+    System.out.println("Nombre: " + usuarioIngresado.getNombre());
+    System.out.println("Correo Electrónico: " + usuarioIngresado.getCorreoElectronico());
+    System.out.println("Evento: " + eventoBuscado.getNombre());
+    System.out.println("Fecha: " + eventoBuscado.getFecha());
+  }
+/*
+  private static void crearEvento(Map<Integer, Evento> eventos){
 
     Evento evento1 = new Evento("Programando ando","Seminario","Av. Calle 1", "2023-06-01", 50, 50, "Goku",0001);
     Evento evento2 = new Evento("IA un nuevo mundo por explorar YIAA", "Charla","Av. Calle 2", "2023-06-02", 100, 100, "Programacion",0002);
@@ -167,5 +176,5 @@ public class Main {
     eventos.put(evento2.getId(), evento2 );
     
   }
-
+*/
 }

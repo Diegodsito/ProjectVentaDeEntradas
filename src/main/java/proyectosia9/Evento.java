@@ -146,5 +146,21 @@ public class Evento {
         }
     }
 
+    public void buscarEvento(int idEvento){
+
+        if(this.id == idEvento){
+            mostrarInfoEvento(idEvento);
+        }
+    }
+
+    public void buscarEvento(String topico)
+    {
+        if(this.topico == topico)
+        {
+            mostrarInfoEvento(topico);
+        }
+        
+    }
+
 
 }

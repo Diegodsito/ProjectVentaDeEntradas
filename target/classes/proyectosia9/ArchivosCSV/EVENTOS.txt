@@ -1,5 +1,5 @@
-Programando ando;Seminario;Av. Calle 1;2023-06-01;50;50;Goku;0001
-IA un nuevo mundo por explorar YIAA;Charla;Av. Calle 2;2023-06-02;100;100;Programacion;0002
-IA un nuevo mundo por explorar YIAA;Charla;Av. Calle 2;2023-06-02;100;100;Programacion;0004
-IA un nuevo mundo por explorar YIAA;Charla;Av. Calle 2;2023-06-02;100;100;Programacion;0005
-
+Programando ando;Charla;ICI 2-1;Abril 08;45;45;Programación;0001
+IA un nuevo mundo por explorar;Seminario;INGAU 3-6;Abril 09;30;30;IA;0002
+Programación en JAVA;Charla;RA 4-4;Septiembre 05;20;20;Programacion;0003
+Ciberseguridad;Charla;IBC 2-4;Agosto 10;50;50;Ciberseguridad;0004
+Programación en Python;Charla;RA 4-4;Septiembre 06;20;20;Programacion;0005
