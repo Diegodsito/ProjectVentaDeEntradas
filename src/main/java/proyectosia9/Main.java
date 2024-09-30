@@ -67,6 +67,8 @@ public class Main {
                 Compra compra = new Compra(idCompra, usuarioIngresado, 0);  // Cuando queramos ponerle valor hay que modificar esto
                 eventoBuscado.agregarCompra(compra);
 
+                //Aca debe modificarse CSV con nuevos usuarios
+
                 // Actualizar entradas disponibles
                 int entradasRestantes = eventoBuscado.getEntradasDisponibles() - 1;  
                 eventoBuscado.setEntradasDisponibles(entradasRestantes);
@@ -96,7 +98,13 @@ public class Main {
             System.out.println("Ingrese el topico del evento que desea buscar");
             
             ingresado = lector.readLine();
-            String topico = ingresado;
+            String topico = ingresado.trim();
+            for (Evento evento : eventos.values()) {
+                if (evento.getTopico().trim().equalsIgnoreCase(topico)) {
+                    evento.mostrarInfoEvento();
+                }
+            }
+            
             //Implementar logica de mostrar varios eventos.
           }
           else if(opcionMenu == 2){  //Buscar por ID
