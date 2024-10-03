@@ -162,8 +162,48 @@ public class Evento {
     public void buscarEvento(String topico) {
         if (this.topico.equalsIgnoreCase(topico)){
             mostrarInfoEvento(topico);
-        
         } 
     }
 
+
+    public void imprimirCompras(){
+        if(compras.isEmpty())
+        {
+            System.out.println("NO Hay comraps");
+            return;
+        }
+        for(Compra compra: compras){
+            System.out.println("Compra: " + compra.getIdCompra());
+            System.out.println("Usuario: " + compra.getUsuario().getNombre());
+            System.out.println("Monto Total: " + compra.getMontoTotal());
+            System.out.println("--------------------");
+           
+        }
+    }
+    public void eliminarCompra(String idCompra) {
+        if (compras.isEmpty()) {
+            System.out.println("No hay compras");
+            return;
+        }
+
+        Iterator<Compra> iterator = compras.iterator(); // Crear un iterador
+        boolean compraEliminada = false;
+
+        while (iterator.hasNext()) {
+            Compra compra = iterator.next();
+            if (compra.getIdCompra().equals(idCompra)) {
+                iterator.remove(); // Eliminar la compra usando el iterador
+                System.out.println("Compra eliminada");
+                compraEliminada = true;
+                break; // Salir del bucle una vez eliminada
+            }
+        }
+
+        if (!compraEliminada) {
+            System.out.println("No se encontró la compra con ID: " + idCompra);
+        }
+    }
+    
+
+    
 }

@@ -38,3 +38,6 @@ public class Compra {
         this.montoTotal = montoTotal;
     }
 }
+
+
+
