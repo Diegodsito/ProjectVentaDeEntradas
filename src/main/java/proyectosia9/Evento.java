@@ -169,7 +169,7 @@ public class Evento {
     public void imprimirCompras(){
         if(compras.isEmpty())
         {
-            System.out.println("NO Hay comraps");
+            System.out.println("No hay compras xdxdxdxd");
             return;
         }
         for(Compra compra: compras){

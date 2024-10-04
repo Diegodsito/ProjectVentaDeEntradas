@@ -3,3 +3,4 @@ IA un nuevo mundo por explorar;Seminario;INGAU 3-6;Abril 09;30;30;IA;0002
 Programación en JAVA;Charla;RA 4-4;Septiembre 05;20;20;Programacion;0003
 Ciberseguridad;Charla;IBC 2-4;Agosto 10;50;50;Ciberseguridad;0004
 Programación en Python;Charla;RA 4-4;Septiembre 06;20;20;Programacion;0005
+

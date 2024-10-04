@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.*;
 
 
+
 public class Main {
 
   
@@ -19,7 +20,7 @@ public class Main {
     Lectura.leer_archivo(eventos);                               //Inicializar eventos con el archivo EVENTOS.txt
     int tamanioMapa = eventos.size();
 
-    System.out.println("Tamaño del mapa: " + tamanioMapa);
+    System.out.println("Cantidad de eventos: " + tamanioMapa);
 
     
     do{
@@ -117,6 +118,7 @@ public class Main {
                 }
             }
             
+            
             //Implementar logica de mostrar varios eventos.
           }
           else if(opcionMenu == 2){  //Buscar por ID
@@ -173,50 +175,45 @@ public class Main {
               System.out.println("Opción inválida. Por favor, seleccione un número válido.");
           }
           
-          
 
           //Para cancelar compra ingresar correo y idCompra al cual tiene guardao pa cancelarlo, se devuelven fondos
           
-          //cancelarCompra();
           break;
         case 4:
-          System.out.println("Gracias por su visita");
+            System.out.println("Gracias por su visita");
+            break;
+        case 5:
+          gestionarEventos(lector, eventos);
           break;
 
-        case 999:
-          System.out.println("modo jakerxdxd");
-
-          if (eventos.isEmpty()) {
+        case 9:
+        System.out.println("modo jakerxdxd");
+        if (eventos.isEmpty()) {
             System.out.println("No hay eventos disponibles.");
             break;
-          }
+        }
 
-          System.out.println("Seleccione un evento para ver la lista de compras:");
+        System.out.println("Seleccione un evento para ver la lista de compras:");
 
-          // Mostrar todos los eventos
-          for (int i = 0; i < eventos.size(); i++) {
-            Evento evento = eventos.get(i);
-            if (evento != null) {  // Asegúrate de que el evento no sea null
-                System.out.println((i + 1) + ". " + evento.getNombre());
-            }
-          }
+        // Mostrar todos los eventos
+        mostrarEventosDisponibles(eventos);
 
-          // Leer la opción del usuario
-          int opcionEvento = Integer.parseInt(lector.readLine());
+        // Leer la opción del usuario
+        int opcionEvento = Integer.parseInt(lector.readLine());
 
-          // Verificar que la opción sea válida
-          if (opcionEvento > 0 && opcionEvento <= eventos.size()) {
-            Evento eventoSeleccionado = eventos.get(opcionEvento - 1);
+        // Verificar que la opción sea válida
+        if (eventos.containsKey(opcionEvento)) { // Verificamos si el ID del evento existe
+            Evento eventoSeleccionado = eventos.get(opcionEvento);
             if (eventoSeleccionado != null) {  // Verifica que el evento no sea null
                 System.out.println("Compras para el evento: " + eventoSeleccionado.getNombre());
                 eventoSeleccionado.imprimirCompras(); // Llama al método para imprimir las compras del evento
             } else {
                 System.out.println("El evento seleccionado no existe.");
             }
-          } else {
+        } else {
             System.out.println("Opción inválida. Por favor, seleccione un número válido.");
-          }
-          break;
+        }
+        break;
         
 
         default:
@@ -248,6 +245,8 @@ public class Main {
     System.out.println("1. Eventos disponibles");
     System.out.println("2. Buscar evento");
     System.out.println("3. Cancelar compra");
+    System.out.println("");
+    System.out.println("5. Gestion de eventos");
     System.out.println("4. Salir");
     System.out.print("Ingrese una opción: ");
 
@@ -291,10 +290,132 @@ public class Main {
       System.out.println("Presiona Enter para continuar...");
       scanner.nextLine();  // Espera a que el usuario presione Enter
   }
-  
+
+  private static void gestionarEventos(BufferedReader lector, Map<Integer, Evento> eventos) throws IOException {
+      int opcionGestion;
+      do {
+          mostrarMenuGestionEventos();
+          String ingresado = lector.readLine();
+          opcionGestion = Integer.parseInt(ingresado);
+
+          switch (opcionGestion) {
+              case 1: // Crear evento
+                  crearEvento(lector, eventos);
+                  break;
+
+              case 2: // Eliminar evento
+                  eliminarEvento(lector, eventos);
+                  break;
+
+              case 3: // Volver al menú principal
+                  System.out.println("Volviendo al menú principal...");
+                  break;
+
+              default:
+                  System.out.println("Opción no válida");
+          }
+      } while (opcionGestion != 3);
+  }
 
 
+  private static void mostrarMenuGestionEventos() {
+      System.out.println("===============================================");
+      System.out.println("   Gestión de Eventos");
+      System.out.println("===============================================");
+      System.out.println("1. Crear evento");
+      System.out.println("2. Eliminar evento");
+      System.out.println("3. Volver al menú principal");
+      System.out.print("Ingrese una opción: ");
+  }
+
   
+  
+  private static void crearEvento(BufferedReader lector, Map<Integer, Evento> eventos) {
+      String nombre = "";
+      String tipo = "";
+      String ubicacion = "";
+      String fecha = "";
+      int capacidadTotal = 0;
+      int entradasDisponibles = 0;
+      String topico = "";
+
+      try {
+          System.out.println("Ingrese el nombre del evento:");
+          nombre = lector.readLine();
+
+          System.out.println("Ingrese el tipo de evento (Charlas o Seminarios):");
+          tipo = lector.readLine();
+
+          System.out.println("Ingrese la ubicación del evento:");
+          ubicacion = lector.readLine();
+
+          System.out.println("Ingrese la fecha del evento:");
+          fecha = lector.readLine();
+
+          System.out.println("Ingrese la capacidad total del evento:");
+          capacidadTotal = Integer.parseInt(lector.readLine());
+
+          System.out.println("Ingrese la cantidad de entradas disponibles:");
+          entradasDisponibles = Integer.parseInt(lector.readLine());
+
+          System.out.println("Ingrese el tópico del evento:");
+          topico = lector.readLine();
+
+          // Validaciones
+          if (capacidadTotal < 0 || entradasDisponibles < 0) {
+              throw new IllegalArgumentException("La capacidad total y las entradas disponibles deben ser números no negativos.");
+          }
+
+          if (entradasDisponibles > capacidadTotal) {
+              throw new IllegalArgumentException("Las entradas disponibles no pueden ser mayores que la capacidad total.");
+          }
+
+          // Crear un nuevo evento
+        Evento nuevoEvento = new Evento(nombre, tipo, ubicacion, fecha, capacidadTotal, entradasDisponibles, topico, eventos.size() + 1);
+        try {
+            ArchivoEventos.guardarEventoEnArchivo(eventos, nuevoEvento, nuevoEvento.getId());
+            System.out.println("Evento creado y guardado correctamente.");
+        } catch (IOException e) {
+            System.out.println("Error al guardar el evento.");
+             e.printStackTrace();
+        }
+        System.out.println("Evento creado con éxito. ID del evento: " + nuevoEvento.getId());
+
+      } catch (NumberFormatException e) {
+          System.out.println("Error: Se esperaba un número. " + e.getMessage());
+      } catch (InputMismatchException e) {
+          System.out.println("Error: Entrada no válida. " + e.getMessage());
+      } catch (IllegalArgumentException e) {
+          System.out.println("Error: " + e.getMessage());
+      } catch (IOException e) {
+          System.out.println("Error al leer la entrada. " + e.getMessage());
+      }
+  }
+
+  private static void eliminarEvento(BufferedReader lector, Map<Integer, Evento> eventos) {
+      try {
+          System.out.println("Ingrese el ID del evento que desea eliminar:");
+          int idEvento = Integer.parseInt(lector.readLine());
+
+          Evento eventoAEliminar = eventos.get(idEvento);
+          if (eventoAEliminar != null) {
+              // Reembolsar entradas si hay compras
+              if (!eventoAEliminar.getCompras().isEmpty()) {
+                  System.out.println("Las entradas han sido reembolsadas.");
+                  // Lógica para reembolso puede ir aquí, si es necesario
+              }
+
+              ArchivoEventos.eliminarEventoPorId(eventos,idEvento); // Eliminar el evento del mapa
+              System.out.println("Evento eliminado con éxito.");
+          } else {
+              System.out.println("No existe un evento con el ID ingresado.");
+          }
+      } catch (NumberFormatException e) {
+          System.out.println("Error: Se esperaba un número. " + e.getMessage());
+      } catch (IOException e) {
+          System.out.println("Error al leer la entrada. " + e.getMessage());
+      }
+  }
   
 
 
