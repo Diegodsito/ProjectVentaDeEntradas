@@ -1,20 +1,34 @@
 package proyectosia9;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.awt.BorderLayout;
 import java.util.*;
+import javax.swing.table.DefaultTableModel;
 
 public class Evento {
+
     private int id;
-    private String tipo; // Charlas o Seminarios
+
+    private String tipo;
+
     private String nombre;
+
     private String topico;
 
     private String ubicacion;
-    private String fecha;
-    private int capacidadTotal;
-    private int entradasDisponibles;
-    private List<Compra> compras; // Nueva lista para las compras
 
-    // Constructor;
+    private String fecha;
+
+    private int capacidadTotal;
+
+    private int entradasDisponibles;
+
+    private List<Compra> compras;
+
+    private float recaudacion;
 
     public Evento() {
         this.nombre = "";
@@ -27,8 +41,7 @@ public class Evento {
         this.topico = "";
     }
 
-    public Evento(String nombre, String tipo, String ubicacion, String fecha, int capacidadTotal,
-            int entradasDisponibles, String topico, int id) {
+    public Evento(String nombre, String tipo, String ubicacion, String fecha, int capacidadTotal, int entradasDisponibles, String topico, int id) {
         this.nombre = nombre;
         this.id = id;
         this.tipo = tipo;
@@ -39,7 +52,6 @@ public class Evento {
         this.topico = topico;
         this.compras = new ArrayList<Compra>();
     }
-    // Getters y Setters;
 
     public String getNombre() {
         return nombre;
@@ -106,13 +118,12 @@ public class Evento {
     }
 
     public void agregarCompra(Compra compra) {
-        compras.add(compra);
+        this.compras.add(compra);
     }
 
     public List<Compra> getCompras() {
         return compras;
     }
-    // Metodos
 
     public void mostrarInfoEvento() {
         System.out.println("");
@@ -122,7 +133,6 @@ public class Evento {
         System.out.println("Capacidad Total : " + capacidadTotal);
         System.out.println("Entradas Disponibles : " + entradasDisponibles);
         System.out.println("Topico : " + topico);
-
     }
 
     public void mostrarInfoEvento(int idEvento) {
@@ -138,7 +148,7 @@ public class Evento {
     }
 
     public void mostrarInfoEvento(String topico) {
-        if (this.topico == topico) {
+        if (this.topico.equals(topico)) {
             System.out.println("");
             System.out.println("Evento : " + nombre);
             System.out.println("Ubicacion : " + ubicacion);
@@ -150,60 +160,107 @@ public class Evento {
     }
 
     public void buscarEvento(int idEvento) {
-
         if (this.id == idEvento) {
             mostrarInfoEvento(idEvento);
-        } else{
+        } else {
             System.out.println("No se encontro el evento con ID: " + idEvento);
         }
-        
     }
 
     public void buscarEvento(String topico) {
-        if (this.topico.equalsIgnoreCase(topico)){
+        if (this.topico.equalsIgnoreCase(topico)) {
             mostrarInfoEvento(topico);
-        } 
+        }
     }
 
-
-    public void imprimirCompras(){
-        if(compras.isEmpty())
-        {
-            System.out.println("No hay compras xdxdxdxd");
+    public void imprimirCompras() {
+        if (compras.isEmpty()) {
+            System.out.println("No hay compras registradas");
             return;
         }
-        for(Compra compra: compras){
+        for (Compra compra : compras) {
             System.out.println("Compra: " + compra.getIdCompra());
             System.out.println("Usuario: " + compra.getUsuario().getNombre());
-            System.out.println("Monto Total: " + compra.getMontoTotal());
+            System.out.println("Edad: " + compra.getUsuario().getEdad());
             System.out.println("--------------------");
-           
         }
     }
+
     public void eliminarCompra(String idCompra) {
-        if (compras.isEmpty()) {
-            System.out.println("No hay compras");
-            return;
+    if (compras.isEmpty()) {
+        throw new IllegalArgumentException("No hay compras registradas.");
+    }
+    
+    Iterator<Compra> iterator = compras.iterator();
+    boolean compraEliminada = false;
+    
+    while (iterator.hasNext()) {
+        Compra compra = iterator.next();
+        if (compra.getIdCompra().equals(idCompra)) {
+            iterator.remove();
+            compraEliminada = true;
+            break;
         }
+    }
+    
+    if (!compraEliminada) {
+        throw new IllegalArgumentException("No se encontró la compra con ID: " + idCompra);
+    }
+}
 
-        Iterator<Compra> iterator = compras.iterator(); // Crear un iterador
-        boolean compraEliminada = false;
+    public float calcularRecaudacion() {
+        int entradasVendidas = this.capacidadTotal - this.entradasDisponibles;
+        if (this.tipo.equals("Charla")) {
+            recaudacion = 1000 * entradasVendidas;
+        } else {
+            recaudacion = 1200 * entradasVendidas;
+        }
+        return recaudacion;
+    }
+    public void imprimirCompras2() {
+    JFrame ventanaCompras = new JFrame("Compras del Evento: " + getNombre());
+    ventanaCompras.setSize(400, 400);
+    ventanaCompras.setLayout(new BorderLayout());
 
-        while (iterator.hasNext()) {
-            Compra compra = iterator.next();
-            if (compra.getIdCompra().equals(idCompra)) {
-                iterator.remove(); // Eliminar la compra usando el iterador
-                System.out.println("Compra eliminada");
-                compraEliminada = true;
-                break; // Salir del bucle una vez eliminada
+    // Crear una tabla para listar las compras
+    String[] columnas = {"ID Compra", "Nombre Usuario", "Edad", "Correo"};
+    DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+    
+    if (compras.isEmpty()) {
+        modelo.addRow(new Object[]{"N/A", "No hay compras registradas", "N/A", "N/A"});
+    } else {
+        for (Compra compra : compras) {
+            Usuario usuario = compra.getUsuario();
+            if (usuario != null) { // Verifica que el usuario no sea nulo
+                modelo.addRow(new Object[]{
+                    compra.getIdCompra(),
+                    usuario.getNombre(),
+                    usuario.getEdad(),
+                    usuario.getCorreoElectronico()
+                });
+            } else {
+                System.out.println("Compra sin usuario asociado: " + compra.getIdCompra());
             }
         }
-
-        if (!compraEliminada) {
-            System.out.println("No se encontró la compra con ID: " + idCompra);
-        }
     }
+
+    JTable tablaCompras = new JTable(modelo);
+    JScrollPane scrollPane = new JScrollPane(tablaCompras);
+    ventanaCompras.add(scrollPane, BorderLayout.CENTER);
+
+    // Botón para cerrar la ventana
+    JButton btnCerrar = new JButton("Cerrar");
+    btnCerrar.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ventanaCompras.dispose();
+        }
+    });
+    ventanaCompras.add(btnCerrar, BorderLayout.SOUTH);
+
+    ventanaCompras.setVisible(true);
+}}
+    
     
 
-    
-}
+

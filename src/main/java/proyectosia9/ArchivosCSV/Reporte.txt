@@ -1,0 +1,21 @@
+=========================================================
+                 REPORTE DE EVENTOS                       
+=========================================================
+ID    Nombre                         Tópico              Entradas   Compradores     Recaudación   
+---------------------------------------------------------
+1     Programando ando               Programacion         12         3               3000,00        
+2     IA un nuevo mundo por explorar IA                   29         1               1200,00        
+3     Programacion en JAVA           Programacion         20         0               0,00           
+4     Ciberseguridad                 Ciberseguridad       50         0               0,00           
+5     Programacion en Python         Programacion         20         0               0,00           
+6     IA y etica                     IA                   20         0               0,00           
+7     Algoritmos de optimizacion     Programacion         30         0               0,00           
+8     Machine Learning aplicado      IA                   25         0               0,00           
+9     Seguridad en Redes             Ciberseguridad       40         0               0,00           
+10    Introduccion a la Robotica     IA                   35         0               0,00           
+11    Desarrollo Web con Python      Programacion         30         0               0,00           
+12    Criptografia moderna           Ciberseguridad       20         0               0,00           
+13    Inteligencia Artificial en ... IA                   50         0               0,00           
+14    Desarrollo de Apps moviles     Programacion         45         0               0,00           
+15    etica en la Ciberseguridad     Ciberseguridad       40         0               0,00           
+=========================================================

@@ -1,8 +1,16 @@
-Programando ando;Charla;ICI 2-1;Abril 08;45;45;Programación;0001
+Programando ando;Charla;IBC 1-3;Octubre 7;15;15;Programacion;0001
 IA un nuevo mundo por explorar;Seminario;INGAU 3-6;Abril 09;30;30;IA;0002
-Programación en JAVA;Charla;RA 4-4;Septiembre 05;20;20;Programacion;0003
+Programacion en JAVA;Charla;RA 4-4;Septiembre 05;20;20;Programacion;0003
 Ciberseguridad;Charla;IBC 2-4;Agosto 10;50;50;Ciberseguridad;0004
-Programación en Python;Charla;RA 4-4;Septiembre 06;20;20;Programacion;0005
-
-SebaEvento;Charlas;Casa del Seba;20/11;20;20;Comida;0006
-ña i;CHarlas;La casa del luca;20/11;4;4;ña a;0007
+Programacion en Python;Charla;RA 4-4;Septiembre 06;20;20;Programacion;0005
+IA y etica;Seminario;IBC 1-1;Agosto 18;20;20;IA;0006
+Algoritmos de optimizacion;Charla;IBC 2-3;Noviembre 12;30;30;Programacion;0007
+Machine Learning aplicado;Seminario;INGAU 1-2;Diciembre 02;25;25;IA;0008
+Seguridad en Redes;Charla;RA 3-6;Octubre 15;40;40;Ciberseguridad;0009
+Introduccion a la Robotica;Seminario;IBC 1-2;Octubre 22;35;35;IA;0010
+Desarrollo Web con Python;Charla;RC 2-7;Noviembre 06;30;30;Programacion;0011
+Criptografia moderna;Seminario;FIN 1-5;Diciembre 08;20;20;Ciberseguridad;0012
+Inteligencia Artificial en videojuegos;Charla;IBC 3-9;Enero 18;50;50;IA;0013
+Desarrollo de Apps moviles;Seminario;RA 2-2;Febrero 10;45;45;Programacion;0014
+etica en la Ciberseguridad;Charla;IBC 2-1;Marzo 01;40;40;Ciberseguridad;0015
+Procesamiento de Lenguaje Natural;Seminario;INGAU 3-5;Abril 20;30;30;IA;0016Septiembre 06;20;20;Programacion;0005
